@@ -1,0 +1,46 @@
+# =========================
+# Entornos Virtuales
+# =========================
+venv/
+env/
+.env/
+.venv/
+
+# =========================
+# Caché y compilados de Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# =========================
+# Jupyter Notebooks
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# Datos y Modelos
+# =========================
+*.csv
+*.xlsx
+*.parquet
+*.dat
+
+/datos/
+/data/
+# Archivos de modelos exportados
+*.pkl
+*.joblib
+
+# =========================
+# Entornos de Desarrollo (IDEs)
+# =========================
+.vscode/
+.idea/
+
+# =========================
+# Archivos temporales de SO (Linux/Fedora, macOS, Windows)
+# =========================
+*~
+.DS_Store
+Thumbs.db
