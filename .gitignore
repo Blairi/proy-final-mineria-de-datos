@@ -47,3 +47,8 @@ ENIGH_INEGI/*.pdf
 .DS_Store
 Thumbs.db
 __MACOSX/
+
+#imagenes
+*.png
+*.jpg
+*.jpeg
