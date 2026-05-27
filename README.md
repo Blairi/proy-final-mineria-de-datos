@@ -17,6 +17,23 @@ Se implementarán dos enfoques principales de Machine Learning:
 1. [cite_start]**Modelo Supervisado:** Predicción basada en un atributo categórico (etiqueta)[cite: 16]. [cite_start]Se evaluará el rendimiento del modelo utilizando la matriz de confusión y extrayendo métricas clave como Accuracy, Precision, Recall y F1-Score[cite: 43, 44, 47, 48, 50, 52]. [cite_start]Además, se generará la curva ROC[cite: 54].
 2. [cite_start]**Modelo No Supervisado (Clusterización):** Agrupamiento de datos utilizando el método del codo para determinar el número de clusters[cite: 66, 69]. [cite_start]Los resultados se validarán internamente utilizando la métrica de Silueta[cite: 72].
 
+## Estructura y Arquitectura del Proyecto
+El proyecto sigue una arquitectura simple por etapas, donde `main.py` funciona como punto de entrada y coordina la ejecución de los módulos.
+
+### Estructura general
+- `requirements.txt`: dependencias necesarias para correr el análisis.
+- `src/main.py`: script principal que define la ruta del CSV, el estado a analizar y los atributos usados.
+- `src/modules`: en esta carpeta estarán todas las fases del proyecto.
+
+### Flujo de ejecución
+1. `main.py` llama al módulo de fases 1 y 2.
+2. El módulo carga `viviendas.csv` y filtra los registros por entidad federativa.
+3. Se hace una exploración inicial de los datos y se generan gráficas de correlación.
+4. El dataframe filtrado se devuelve para que futuras fases del proyecto lo reutilicen.
+
+### Idea de arquitectura
+La lógica está separada por responsabilidad: el archivo principal solo coordina, mientras que cada módulo contiene el procesamiento específico de su fase. Esto facilita mantener, probar y ampliar el proyecto cuando se agreguen más etapas.
+
 ---
 
 ## 🚀 Guía de Arranque Rápido para el Equipo
