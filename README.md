@@ -6,10 +6,10 @@
 [cite_start]El proyecto sigue la metodología KDD (Knowledge Discovery in Databases) para analizar los datos de la **Encuesta Nacional de Ingresos y Gastos de los Hogares (ENIGH) 2024** del INEGI, trabajando específicamente con el archivo `vivienda.csv`[cite: 12, 14]. [cite_start]El análisis se centra en una sola entidad federativa para realizar predicción de casos y descubrimiento de patrones[cite: 12, 15].
 
 ## Equipo de Desarrollo
-* Axel Fernando Montiel Aviles
-* 
-*
-* 
+* Montiel Aviles Axel Fernando
+* Lopez Betancourt Michelle
+* Osorio Angeles Rodrigo Jafet
+* Díaz González Rivas Ángel Iñaqui
 
 ## Objetivos Técnicos
 Se implementarán dos enfoques principales de Machine Learning:
