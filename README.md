@@ -80,3 +80,11 @@ Instalamos todo ejecutando:
 ```Bash
 pip install -r requirements.txt
 ```
+
+## Ejecutar programa
+Ejecutar desde la raíz del proyecto:
+```Bash
+python3 src/main.py
+```
+
+Importante ejecutar desde la raiz para no tener problemas con la lectura del archivo csv.
