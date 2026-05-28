@@ -1,5 +1,6 @@
 import modules.phase1_2_universe as m1
 import modules.phase3_preprocessing as m3
+import modules.phase4_transforming as m4
 
 RUTA_CSV      = './ENIGH_INEGI/viviendas.csv'
 CVE_ESTADO    = '15'
@@ -14,3 +15,5 @@ if __name__ == '__main__':
     # Fase 3
     df_work = m3.ejecutar(df_estado, ATRIBUTOS)
     
+    # Fase 4
+    X_train, X_test, y_train, y_test, X_train_sc, X_test_sc, scaler = m4.ejecutar(df_work)
