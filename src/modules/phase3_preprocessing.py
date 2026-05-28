@@ -70,15 +70,26 @@ def discretizar_tenencia(df):
     categórica legible. Se agrupa en 3 clases para balancear
     la distribución y simplificar la clasificación.
     """
-    print("\n── Discretizando etiqueta 'tenencia' ──")
+    print("\n── Discretizando etiqueta 'tenencia' ──")   # ← 4 espacios
+    df['tenencia'] = pd.to_numeric(df['tenencia'], errors='coerce')
+    df['tenencia'] = df['tenencia'].fillna(df['tenencia'].mode()[0])
+    df['tenencia'] = df['tenencia'].astype(int)
+
+    print("\nValores únicos de tenencia ANTES del map:")
+    print(df['tenencia'].value_counts(dropna=False))
 
     mapa = {1: 'Propia', 2: 'Propia', 3: 'Rentada', 4: 'Prestada', 5: 'Prestada'}
     df['tenencia_cat'] = df['tenencia'].map(mapa)
     df = df.drop(columns=['tenencia'])
 
+    nulos_post_map = df['tenencia_cat'].isnull().sum()
+    if nulos_post_map > 0:
+        print(f"{nulos_post_map} valores no mapeados:")
+        print(df.loc[df['tenencia_cat'].isnull(), 'tenencia_cat'].value_counts())
+        df['tenencia_cat'] = df['tenencia_cat'].fillna('Otra')
+
     print("Distribución de clases:")
     print(df['tenencia_cat'].value_counts())
-    print(f"\nProporción:\n{df['tenencia_cat'].value_counts(normalize=True).round(3)}")
 
     return df
 
@@ -94,9 +105,15 @@ def validar_resultado(df):
 def ejecutar(df_estado, atributos):
     print("==== FASE 3: PRE-PROCESAMIENTO ====")
 
+    print(f"Columnas recibidas: {list(df_estado.columns)}")  # diagnóstico
+    print(f"ATRIBUTOS         : {atributos}")                # diagnóstico
+
     df_limpio = validar_nulos(df_estado, atributos)
     df_limpio = limpiar_texto_y_acentos(df_limpio, atributos)
     df_limpio = verificar_tipos_datos(df_limpio, atributos)
+
+    print(f"Columnas antes de discretizar: {list(df_limpio.columns)}")
+
     df_limpio = discretizar_tenencia(df_limpio)
     validar_resultado(df_limpio)
 
