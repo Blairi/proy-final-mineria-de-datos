@@ -71,6 +71,7 @@ def matriz_correlacion_general(df_estado, nombre_estado):
     plt.tight_layout()
     plt.savefig('correlacion_general.png', dpi=150)
     plt.show()
+    plt.close(fig)
 
     corr_pairs = (
         corr_matrix
@@ -81,7 +82,7 @@ def matriz_correlacion_general(df_estado, nombre_estado):
     corr_pairs.columns = ['var1', 'var2', 'correlacion']
     corr_pairs['abs_corr'] = corr_pairs['correlacion'].abs()
 
-    print("\n── Top 15 correlaciones más fuertes ──")
+    print("\n-- Top 15 correlaciones mas fuertes --")
     print(
         corr_pairs
         .sort_values('abs_corr', ascending=False)
@@ -117,8 +118,9 @@ def matriz_correlacion_seleccion(df_estado, atributos, nombre_estado):
     plt.tight_layout()
     plt.savefig('correlacion_seleccion.png', dpi=150)
     plt.show()
+    plt.close(fig)
 
-    print("\n── Correlación de atributos vs etiqueta (tenencia) ──")
+    print("\n-- Correlacion de atributos vs etiqueta (tenencia) --")
     corr_vs_label = (
         corr_sel['tenencia']
         .drop('tenencia')

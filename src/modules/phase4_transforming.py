@@ -18,7 +18,7 @@ def particionar(X, y, test_size=0.2, random_state=42):
     de clases con stratify, para evitar subrepresentación de
     clases minoritarias (Prestada) en alguno de los conjuntos.
     """
-    print(f"\n── Particionando dataset (train {int((1-test_size)*100)}% / test {int(test_size*100)}%) ──")
+    print(f"\n-- Particionando dataset (train {int((1-test_size)*100)}% / test {int(test_size*100)}%) --")
 
     X_train, X_test, y_train, y_test = train_test_split(
         X, y,
@@ -53,7 +53,7 @@ def escalar(X_train, X_test):
     El árbol de decisión no requiere escalado pero se
     generan ambas versiones para tenerlas disponibles.
     """
-    print("\n── Escalando atributos (StandardScaler) ──")
+    print("\n-- Escalando atributos (StandardScaler) --")
 
     scaler = StandardScaler()
     X_train_sc = scaler.fit_transform(X_train)
@@ -69,7 +69,7 @@ def escalar(X_train, X_test):
 
 
 def validar_resultado(X_train, X_test, y_train, y_test):
-    print("\n── Validación final fase 4 ──")
+    print("\n-- Validacion final fase 4 --")
     print(f"X_train : {X_train.shape}  |  y_train : {y_train.shape}")
     print(f"X_test  : {X_test.shape}   |  y_test  : {y_test.shape}")
 

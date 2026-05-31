@@ -3,7 +3,7 @@ import numpy as np
 
 
 def validar_nulos(df, atributos):
-    print("\n── Validando valores nulos ──")
+    print("\n-- Validando valores nulos --")
     df_work = df[atributos].copy()
     nulos = df_work.isnull().sum()
     print(nulos)
@@ -25,7 +25,7 @@ def validar_nulos(df, atributos):
 
 
 def limpiar_texto_y_acentos(df, atributos):
-    print("\n── Limpiando texto y acentos ──")
+    print("\n-- Limpiando texto y acentos --")
     columnas_texto = df[atributos].select_dtypes(include=['object']).columns
 
     if len(columnas_texto) > 0:
@@ -46,7 +46,7 @@ def limpiar_texto_y_acentos(df, atributos):
 
 
 def verificar_tipos_datos(df, atributos):
-    print("\n── Verificando tipos de datos ──")
+    print("\n-- Verificando tipos de datos --")
     for col in atributos:
         if not pd.api.types.is_numeric_dtype(df[col]):
             print(f"Convirtiendo '{col}' a numérico...")
@@ -63,19 +63,22 @@ def verificar_tipos_datos(df, atributos):
 
 def discretizar_tenencia(df):
     """
-    c. Discretización de 'tenencia'
-    Razón: el campo es un código numérico sin orden matemático
-    (1=propia pagada, 2=propia pagándose, 3=rentada, 4=prestada,
+    c. Discretizacion de 'tenencia'
+    Razon: el campo es un codigo numerico sin orden matematico
+    (1=propia pagada, 2=propia pagandose, 3=rentada, 4=prestada,
     5=otra). El algoritmo supervisado necesita una etiqueta
-    categórica legible. Se agrupa en 3 clases para balancear
-    la distribución y simplificar la clasificación.
+    categorica legible.
+
+    Se conserva la definicion multiclase integrada en origin/dev:
+    1 y 2 -> Propia, 3 -> Rentada, 4 y 5 -> Prestada.
+    Los valores no mapeados se agrupan como Otra.
     """
-    print("\n── Discretizando etiqueta 'tenencia' ──")   # ← 4 espacios
+    print("\n-- Discretizando etiqueta 'tenencia' --")
     df['tenencia'] = pd.to_numeric(df['tenencia'], errors='coerce')
     df['tenencia'] = df['tenencia'].fillna(df['tenencia'].mode()[0])
     df['tenencia'] = df['tenencia'].astype(int)
 
-    print("\nValores únicos de tenencia ANTES del map:")
+    print("\nValores unicos de tenencia ANTES del map:")
     print(df['tenencia'].value_counts(dropna=False))
 
     mapa = {1: 'Propia', 2: 'Propia', 3: 'Rentada', 4: 'Prestada', 5: 'Prestada'}
@@ -85,17 +88,17 @@ def discretizar_tenencia(df):
     nulos_post_map = df['tenencia_cat'].isnull().sum()
     if nulos_post_map > 0:
         print(f"{nulos_post_map} valores no mapeados:")
-        print(df.loc[df['tenencia_cat'].isnull(), 'tenencia_cat'].value_counts())
+        print(df.loc[df['tenencia_cat'].isnull(), 'tenencia_cat'].value_counts(dropna=False))
         df['tenencia_cat'] = df['tenencia_cat'].fillna('Otra')
 
-    print("Distribución de clases:")
+    print("Distribucion de clases:")
     print(df['tenencia_cat'].value_counts())
 
     return df
 
 
 def validar_resultado(df):
-    print("\n── Validación final fase 3 ──")
+    print("\n-- Validacion final fase 3 --")
     print(f"Shape del dataset: {df.shape}")
     print(f"Nulos restantes  : {df.isnull().sum().sum()}")
     print("\nPrimeros registros procesados:")
