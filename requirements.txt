@@ -1,0 +1,15 @@
+# Manipulación y análisis de datos
+pandas>=2.2,<2.4
+numpy>=1.26,<3.0
+
+# Visualización de datos
+matplotlib>=3.8,<3.11
+seaborn>=0.13,<0.14
+
+# Machine Learning
+scikit-learn>=1.4,<1.8
+
+# Jupyter
+jupyter>=1.0
+notebook>=7.1
+ipykernel>=6.29
